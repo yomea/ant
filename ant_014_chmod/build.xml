@@ -1,0 +1,27 @@
+<?xml version="1.0"?>  
+<project name="main" default="chmod" basedir=".">  
+	
+	<!--<property name="targetDir" value="copyToThere"/> -->
+	
+	
+	<target name="chmod">
+		
+		<!--类似Linux下的chmod，go-rwx表示去掉组和other的读写执行权限 -->
+		<chmod perm="go-rwx" type="file">
+		   <fileset dir="/web">
+		     <include name="***.old"/>
+		   </fileset>
+		   <dirset dir="/web">
+		     <include name="**/private_*"/>
+		   </dirset>
+		</chmod>
+	
+		
+	
+	</target>
+	
+	
+	
+	
+	
+</project> 

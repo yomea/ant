@@ -1,0 +1,66 @@
+<!-- basedir表示工作目录，.表示在当前目录，其他的目录都将基于这个目录寻找东西，default制定默认执行的任务 -->
+<project name="HelloWorld" default="run" basedir=".">
+  <description>
+    simple example build file
+  </description>
+  <!-- set global properties for this build -->
+  <!-- 定义全局变量，类似在java中的变量，name表示变量名，value表示变量的值，使用${}来获取某个变量的值 -->
+  <property name="src" location="."/>
+  <property name="build" location="build"/>
+  <property name="dist" location="dist"/>
+
+  <!-- target表示你想做的任务,name属性表示你给这个任务取的名字-->
+  <target name="init">
+    <!-- Create the time stamp -->
+    <tstamp/>
+    <!-- Create the build directory structure used by compile -->
+	<!-- 创建build值目录 -->
+    <mkdir dir="${build}"/>
+  </target>
+
+  <!-- 名字为compile的任务以来init这个任务，在执行compile任务前，先会检查init任务是否执行过了 -->
+  <target name="compile" depends="init"
+        description="compile the source">
+    <!-- Compile the java code from ${src} into ${build} -->
+	<!-- 从srcdir下递归寻找编译java代码，将编译好后的class文件放到descdir下 -->
+    <javac srcdir="${src}" destdir="${build}"/>
+  </target>
+
+  <target name="dist" depends="compile"
+        description="generate the distribution">
+    <!-- Create the distribution(分配) directory -->
+    <mkdir dir="${dist}/lib"/>
+
+    <!-- Put everything in ${build} into the MyProject-${DSTAMP}.jar file -->
+	<!-- 将basedir（不包含basedir本身）下的所有文件打包成jar文件 -->
+    <jar jarfile="${dist}/lib/HelloWorld-${DSTAMP}.jar" basedir="${build}"/>
+  </target>
+  
+  <!-- 运行java代码 -->
+  <target name="run" depends="dist"
+        description="run java application">
+    
+	<java classname="ant.test.HelloWorld1" classpath="${build}/" />
+	
+  </target>
+  
+
+  <target name="clean"
+        description="clean up">
+    <!-- Delete the ${build} and ${dist} directory trees -->
+	<!-- 删除制定的目录 -->
+	<delete dir="${build}"/>
+    <delete dir="${dist}"/>
+	
+  </target>
+  
+  <!-- 先查找依赖，从右向左run->clean->retRen -->
+  <target name="retRun" depends="clean,run">
+  
+	<!-- 类似于ant clean命令，在没有指点目录的情况下值得就是执行当前build.xml中的target -->
+    <ant target="clean" />
+	<ant target="run" />
+	
+  </target>
+  
+</project>

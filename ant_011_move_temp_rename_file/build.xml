@@ -1,0 +1,21 @@
+<?xml version="1.0"?>  
+<project name="main" default="delete" basedir=".">  
+	
+	<property name="targetDir" value="copyToThere"/> 
+	
+	<target name="delete">  
+		
+		<move todir="">
+			<fileset>
+				<include dir=""/>
+				<excluede dir=""/>
+			</fileset>
+		</move>
+		<rename src="" dest="">
+		
+		<tempfile property="temp.file" destDir="" suffix=""/>
+		
+	</target>  
+	  
+	
+</project> 

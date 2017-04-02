@@ -1,0 +1,38 @@
+<?xml version="1.0"?>  
+<project name="main" default="exec" basedir=".">  
+	
+	<!--<property name="targetDir" value="copyToThere"/> -->
+	
+	
+	<target name="exec">
+		
+			
+		<sql
+			driver="oracle.jdbc.driver.OracleDriver"
+			url="jdbc:oracle:thin:@192.168.111.158:1521:orcl10"
+			userid="sht_ccs"
+			password="sht_ccs" 
+			src="http://cxh0923.blog.163.com/blog/./sht_test.sql"
+			encoding="UTF-8"
+			onerror="continue">
+			
+			insert into t_user values (seq.nextVal, 'youth')
+			
+		 <!--<classpath refid=“classpath”/>-->
+		</sql>
+		
+		<length file="" property=""></length>
+		<length string="" property=""></length>
+		
+		<input message="input any string" addproperty="" defaultvalue="" />
+		
+		
+		<fixcrlf srcdir=""></fixcrlf>
+	
+	</target>
+	
+	
+	
+	
+	
+</project> 

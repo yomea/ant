@@ -1,0 +1,25 @@
+<?xml version="1.0"?>  
+<project name="main" default="delete" basedir=".">  
+	
+	<property name="targetDir" value="copyToThere"/> 
+	
+	<target name="delete">  
+		
+		<delete dir=""/>
+		<delete file=""/>
+		<delete includeEmptyDirs="true">
+			<fileset>
+			 <include dir=""/>
+			 <exclude dir=""/>
+			</fileset>
+		</delete>
+		
+		<!-- 删除文件树 -->
+		<deltree dir="dist"/>
+		
+		
+		
+	</target>  
+	  
+	
+</project> 

@@ -1,0 +1,42 @@
+<?xml version="1.0"?>  
+<project name="main" default="replace1" basedir=".">  
+	
+	<!--<property name="targetDir" value="copyToThere"/> -->
+	
+	
+	<target name="replace1">
+		
+	
+		<!-- value 设置默认值-->
+		<replace file="test.txt" value="if all.properties didn't find key will set this value in it" propertyFile="all.properties">
+			<replacefilter token="this" value="that"/>
+			<replacefilter token="o" property="replace.value"/>
+		</replace>
+	
+	</target>
+	
+	<target name="replace2">
+		<replace file="test.txt"    token="hello"     value="world"/>
+		
+		
+	</target>
+	
+	
+	<target name="replace3">
+		
+		
+		<replace file="test.txt" dir="." includes="*.txt" encoding="UTF-8">
+			<replacefilter token="this" value="that"/>
+			<replacefilter token="o" value="00"/>
+		</replace>
+	
+	
+		
+	
+	</target>
+	
+	
+	
+	
+	
+</project> 

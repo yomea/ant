@@ -1,0 +1,97 @@
+<?xml version="1.0"?>  
+<project name="main" default="test1" basedir=".">  
+	
+	<!--<property name="targetDir" value="copyToThere"/> -->
+	
+	
+	<target name="test1">
+		<!-- 定义一个判断条件 -->
+        <condition property="scondition">
+            <istrue value="true"/>                    
+        </condition>
+        <antcall target="isTrue"></antcall>
+        <antcall target="isFalse"></antcall>        
+    </target>
+	
+	<target name="test2">
+        <condition property="scondition">
+			<not>
+				<istrue value="true"/>  
+			</not>
+        </condition>
+        <antcall target="isTrue"></antcall>
+        <antcall target="isFalse"></antcall>        
+    </target>
+	
+	
+	<target name="test3">
+        <condition property="scondition">
+            <and>
+                <istrue value="true"/>
+                <istrue value="false"/>                    
+            </and>
+        </condition>
+        <antcall target="isTrue"></antcall>
+        <antcall target="isFalse"></antcall>        
+    </target>
+	
+	
+	<path id="all.test.classes">         
+         <pathelement location="bin"/>
+     </path>
+    <target name="test4">
+        <condition property="scondition">
+            <!--在指定的classpath路径下是否存在资源 TestTest.class-->
+            <available resource="TestTest.class">
+                <classpath refid="all.test.classes" />        
+            </available>
+        </condition>
+        <antcall target="isTrue"></antcall>
+        <antcall target="isFalse"></antcall>        
+    </target>
+	
+	
+	
+	<!--属性也可以通过ant参数-D来设置-->
+    <property name="name" value="this is name"/>    
+    <target name="test5">
+        <condition property="scondition">
+            <!--如果属性name不存在则返回false-->
+            <isset property="name"/>
+        </condition>
+        <antcall target="isTrue"></antcall>
+        <antcall target="isFalse"></antcall>        
+    </target>
+	
+	
+	<!--属性也可以通过ant参数-D来设置-->
+    <property name="name" value="this is name"/>    
+    <target name="test6">
+        <condition property="scondition">
+            <!--如果arg1的值与arg2的值相等返回true，否则为false-->
+            <equals arg1="${name}" arg2="this is name"/>
+        </condition>
+        <antcall target="isTrue"></antcall>
+        <antcall target="isFalse"></antcall>        
+    </target>
+	
+	<target name="test7">
+        <condition property="scondition">
+            <!--如果file1所代表的文件与file2所代表的文件相等返回true，否则为false-->
+            <filesmatch file1="build.xml" file2="build.xml"/>
+        </condition>
+        <antcall target="isTrue"></antcall>
+        <antcall target="isFalse"></antcall>        
+    </target>
+   
+    <target name="isTrue" if="scondition">
+        <echo>is ture</echo>
+    </target>
+	
+    <target name="isFalse" unless="scondition">
+        <echo>is false</echo>
+    </target>
+
+	  
+	
+</project> 

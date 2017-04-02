@@ -1,0 +1,24 @@
+<?xml version="1.0"?>  
+<project name="main" default="exec" basedir=".">  
+	
+	<!--<property name="targetDir" value="copyToThere"/> -->
+	
+	
+	<target name="exec">
+		
+			
+		<exec executable="notepad">
+			
+			
+			<arg value="txt.txt"/>
+			
+		</exec>
+
+	
+	</target>
+	
+	
+	
+	
+	
+</project> 

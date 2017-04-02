@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project basedir="." default="run" name="echoXMLTest">
+  <target name="run">
+    <echo>this is an echo xml file</echo>
+  </target>
+</project>

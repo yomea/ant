@@ -1,0 +1,28 @@
+<?xml version="1.0"?>  
+<project name="main" default="copy" basedir=".">  
+	
+	<property name="targetDir" value="copyToThere"/> 
+	
+	<target name="copy">  
+		<copy todir="${targetDir}">  
+			<fileset dir="${basedir}">  
+				<include name="**/*.txt"/> 
+
+			</fileset>  
+			
+			<filterset>
+			<!-- 将文件中内容为@TITLE@替换成heheda -->
+				<filter token="TITLE" value="heheda">
+				
+				
+				</filter>
+			
+			</filterset>
+			
+			
+		</copy>
+		
+	</target>  
+	  
+	
+</project> 

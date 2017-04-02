@@ -1,0 +1,41 @@
+<?xml version="1.0"?>  
+<project name="main" default="build" basedir=".">  
+	<property name="bin" value="${basedir}/bin"/>  
+	<property file="all.properties" />
+  
+	<target name ="init">  
+		<mkdir dir="${bin}"/>  
+	</target>  
+	  
+	 <!-- 调用dir下的build.xml中对应的target -->
+	<target name="run">   
+		<ant dir="${src1}" target="run"/>  
+		<ant dir="${src2}" target="run"/>  
+		<ant dir="${src3}" target="run"/>  
+	</target>  
+	  
+	<target name="clean">  
+		<ant dir="${src1}" target="clean"/>  
+		<ant dir="${src2}" target="clean"/>  
+		<ant dir="${src3}" target="clean"/>  
+	</target>  
+	  
+	<target name="build" depends="init,run">  
+		<copy todir="${bin}">  
+			<fileset dir="${src1}">  
+				<include name="*.jar"/>  
+			</fileset>  
+			<fileset dir="${src2}">  
+				<include name="*.jar"/>  
+			</fileset>  
+			<fileset dir="${src3}">  
+				<include name="*.jar"/>  
+			</fileset>  
+		</copy>  
+	</target>  
+	  
+	<target name ="rebuild" depends="build,clean">  
+		<ant target="clean" />  
+		<ant target="build" />  
+	</target>  
+</project> 

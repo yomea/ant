@@ -1,0 +1,5 @@
+<target name="echo">
+
+	<echo>you are the world, you are the children</echo>
+
+</target>

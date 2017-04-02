@@ -1,0 +1,30 @@
+ant手册中的ant配置classpath采用classpath标签  
+ 
+
+ant手册中的ant配置classpath采用classpath标签，可是我发现这样配置总是不好用，还是直接用path可以使用 
+设置classpath的方法有多种 
+<path id="project.classpath"> 
+    1<pathelement path="${basedir}/lib/aa.jar"/> 
+    2<pathelement location="aa.jar"/>与1的区别在于location可以去当前路径，当然可以使用绝对路径 
+    3<filelist id="file" dir="${basedir}/lin"> 
+          <file name="a.jar"/> 
+          <file name="d:lib/b.jar"/> 
+     </filelist> 
+    4<fileset dir="d:/lib"> 
+        <include name="**/*.jar"/> 
+     </fileset> 
+   5手册上说了dirset也好用，但是我测试了还是不要用的 
+</path>    
+下面说classpath的使用 
+   样例如下 
+     <javac scdir="./src" destdir="./classes"> 
+           <classpath refid="project.classpath"/>  
+   </javac> 
+
+
+下面是比较四种方式的优缺点 
+   第一种调用的需要设置绝对路径适合第三方jar包 
+   第二种则适合jar包和build.xml文件在同一目录下的情况，但是我觉得两个文件放在一起本身就不合理，估计是用的情况不多。 
+前两个都是设置单个jar包 
+  第三种是一个文件集合适合引入不同路径的jar包，但是需要输入每个jar包的名字，比较繁琐，适合于jar包属于不同位置，比较分散但是不多的情况 
+  第四种是一个文件夹，可以采用匹配模式来引入，这个适合在同一个文件夹下，文件名字比较多的情况下 

@@ -1,0 +1,31 @@
+<?xml version="1.0"?>  
+<project name="main" default="copy" basedir=".">  
+	
+	<property name="targetDir" value="copyToThere"/> 
+	
+	<target name="copy">  
+		<copy todir="${targetDir}">  
+			<fileset dir="${basedir}">  
+				<include name="*.txt"/>  
+			</fileset>  
+			
+		</copy>
+		
+		
+		<copy todir="${targetDir}">  
+			<fileset dir="${basedir}">  
+				<exclude name="**/*.java" />
+			</fileset>  
+			
+		</copy>
+		
+
+		<copy file="${basedir}/*.txt" todir="${targetDir}">  
+			
+			
+		</copy>
+		
+	</target>  
+	  
+	
+</project> 

@@ -1,0 +1,33 @@
+<!-- basedir表示工作目录，.表示在当前目录，其他的目录都将基于这个目录寻找东西，default制定默认执行的任务 -->
+<project name="HelloWorld" default="echoTest" basedir=".">
+  <description>
+    simple example build file
+  </description>
+  
+  
+  <target name="echoTest" depends="echoXML">
+	<echo>echo method one</echo>
+	
+	
+	<echo message="echo method two"></echo>
+	
+	
+  
+  </target>
+  
+  
+  <target name="echoXML" >
+  
+	<echoxml file="echoXML.xml">
+		<project name="echoXMLTest" default="run" basedir=".">
+			<target name="run">
+				<echo>this is an echo xml file</echo>
+			</target>
+		</project>
+	
+	</echoxml>
+  
+  </target>
+
+  
+</project>
